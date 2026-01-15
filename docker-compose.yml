@@ -1,0 +1,46 @@
+services:
+  # --- Service 1: The Database ---
+  db:
+    image: postgres:15-alpine
+    restart: always
+    environment:
+      # GENERIC NAMES: related to the 'Notification Domain'
+      POSTGRES_USER: notification_admin
+      POSTGRES_PASSWORD: secret_password_change_me
+      POSTGRES_DB: notification_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - notification_network
+    healthcheck:
+      # Updated connection string to match new user/db
+      test: ["CMD-SHELL", "pg_isready -U notification_admin -d notification_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # --- Service 2: The Bot ---
+  bot:
+    build: .
+    restart: always
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "5000:5000"
+    env_file:
+      - .env
+    environment:
+      # UPDATE: Connection string matches the new DB credentials
+      - DATABASE_URL=postgresql://notification_admin:secret_password_change_me@db:5432/notification_db
+    networks:
+      - notification_network
+
+# Persistent Storage
+volumes:
+  postgres_data:
+
+# Internal Network
+networks:
+  notification_network:
+    driver: bridge
