@@ -35,4 +35,3 @@ class SmartNotificationService:
                 return "Sent via Viber"
 
         return "Failed: User exists but has no active messaging channels."
-    

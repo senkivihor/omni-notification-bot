@@ -7,4 +7,3 @@ class UserDTO:
     name: str
     viber_id: Optional[str] = None
     telegram_id: Optional[str] = None
-    

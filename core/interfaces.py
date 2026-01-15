@@ -19,4 +19,3 @@ class IUserRepository(ABC):
     @abstractmethod
     def get_user_by_phone(self, phone: str):
         pass
-    

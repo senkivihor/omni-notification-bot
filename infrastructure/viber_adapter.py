@@ -23,4 +23,3 @@ class ViberAdapter(INotificationChannel):
 
     def get_api_client(self):
         return self.viber
-    
