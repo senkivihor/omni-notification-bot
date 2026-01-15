@@ -44,3 +44,4 @@ volumes:
 networks:
   notification_network:
     driver: bridge
+    

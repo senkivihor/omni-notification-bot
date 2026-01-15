@@ -38,3 +38,4 @@ class SqlAlchemyUserRepository(IUserRepository):
                     telegram_id=user.telegram_id
                 )
             return None
+        

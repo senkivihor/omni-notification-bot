@@ -77,3 +77,4 @@ def test_viber_handles_exceptions():
 
         # --- ASSERT ---
         assert result is False
+        

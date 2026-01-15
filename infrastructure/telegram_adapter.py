@@ -46,3 +46,4 @@ class TelegramAdapter(INotificationChannel):
             "text": "👋 Welcome! Please share your number so we can link your orders.",
             "reply_markup": keyboard
         })
+        

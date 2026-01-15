@@ -68,3 +68,4 @@ def test_notify_handles_user_not_found(service, mock_deps):
     # --- ASSERT ---
     assert "User not found" in result
     mock_deps["telegram"].send_message.assert_not_called()
+    
